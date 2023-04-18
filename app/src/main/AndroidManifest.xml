@@ -1,0 +1,59 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.worldline.valina">
+
+    <!--<uses-permission android:name="com.worldline.spica.permission.MAPS" />-->
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="com.worldline.spica.permission.MAPS" />
+    <!--SPICA permissions- CARD  permissions -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RUN_SCRIPT" />
+
+    <uses-permission android:name="com.worldline.spica.permission.SMART_CARD_SERVICE" />
+    <uses-permission android:name="com.worldline.spica.permission.MAG_STRIPE_SERVICE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="com.worldline.spica.permission.MAPS" />
+    <uses-permission android:name="com.worldline.spica.permission.SECURE_SERVICE" />
+    <uses-permission android:name="com.worldline.spica.permission.PERSISTENT_TIMER_SERVICE" />
+    <uses-permission android:name="com.worldline.spica.permission.INSTALL_PACKAGES" />
+    <uses-permission android:name="com.worldline.spica.permission.SPICA_PACKAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.worldline.spica.permission.SECURE_PROXY_SERVICE"/>
+    <uses-permission android:name="com.worldline.spica.permission.SMART_CARD_SERVICE"/>
+    <uses-permission android:name="com.worldline.spica.permission.MAG_STRIPE_SERVICE" />
+    <!--"@mipmap/ic_launcher"-->
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/item4"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <service
+            android:name=".MyStartService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="intent.worldline.MAPS" />
+            </intent-filter>
+        </service>
+        <activity android:name="com.worldline.valina.utils.PinActivity" />
+        <activity android:name="com.worldline.valina.utils.PinInsecure" />
+
+    </application>
+</manifest>

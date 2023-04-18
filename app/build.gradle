@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.worldline.spica.signapk'
+
+buildscript {
+    dependencies {
+        classpath fileTree(include: ['*.jar'], dir: "${AWL_libs}")
+    }
+}
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.worldline.entrypointsample"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            signingConfig null
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    signApk {
+        keyAlias 'custdisplay'
+        keyPkiVersion 'v2'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: "${AWL_libs}")
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.google.zxing:core:3.2.1'
+    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+}

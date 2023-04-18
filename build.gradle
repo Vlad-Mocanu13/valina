@@ -1,0 +1,53 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.AWL_platform = "191828"
+
+    if (System.properties['os.name'].toLowerCase().contains('windows')) {
+        println "it's Windows"
+        ext.my_home     = System.env.USERPROFILE
+        ext.AWL_libs    = "${my_home}\\Android\\Sdk\\add-ons\\addon-maps-${AWL_platform}-worldline-19\\libs"
+        ext.AWL_plugins = "${my_home}\\Android\\Sdk\\add-ons\\addon-maps-${AWL_platform}-worldline-19\\plugins"
+        ext.AWL_OFFLINE = "${my_home}\\Android\\OFFLINE"
+        ext.AWL_maven   = "${my_home}\\Android\\OFFLINE\\MAVEN"
+    } else {
+        println "it's Linux"
+        ext.my_home     = System.env.HOME
+        ext.AWL_libs    = "${my_home}/Android/Sdk/add-ons/addon-maps-${AWL_platform}-worldline-19/libs"
+        ext.AWL_plugins = "${my_home}/Android/Sdk/add-ons/addon-maps-${AWL_platform}-worldline-19/plugins"
+        ext.AWL_OFFLINE = "${my_home}/Android/OFFLINE"
+        ext.AWL_maven   = "${my_home}/Android/OFFLINE/MAVEN"
+    }
+
+    repositories {
+        maven {
+            url "${AWL_maven}"
+        }
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath fileTree(include: ['*.jar'], dir: "${AWL_plugins}")
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        maven {
+            url "${AWL_maven}"
+        }
+        google()
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
